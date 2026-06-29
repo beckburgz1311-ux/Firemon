@@ -1,0 +1,15 @@
+button{cursor:pointer;transition:transform .05s,box-shadow .05s,filter .2s}button:hover{filter:brightness(1.1)}
+.logo-mark{text-shadow:2px 2px 0 #4b0d09}
+.viewport-shell.shake{animation:firemon-shake .3s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes firemon-shake{10%,90%{transform:translate3d(-2px,0,0)}20%,80%{transform:translate3d(3px,0,0)}30%,50%,70%{transform:translate3d(-5px,0,0)}40%,60%{transform:translate3d(5px,0,0)}}
+.scanlines{position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(18,16,16,0) 50%,rgba(0,0,0,.2) 50%),linear-gradient(90deg,rgba(255,0,0,.04),rgba(0,255,0,.01),rgba(0,0,255,.04));background-size:100% 3px,3px 100%;z-index:20;opacity:.55}
+.hud{z-index:25}.crosshair{z-index:26;color:rgba(255,224,153,.72)}
+.hud-box strong,.target-box>span{text-shadow:1px 1px 0 #000}.bar i{transition:width .2s ease-out}
+.message{z-index:35;transform:translate(-50%,10px);background:rgba(10,5,5,.95);transition:all .2s ease-out}.message.show{transform:translate(-50%,0)}
+.pixel-btn,.action-btn{text-shadow:1px 1px 0 rgba(0,0,0,.8)}
+.overlay{z-index:40;background:rgba(0,0,0,.85);backdrop-filter:blur(2px)}
+.battle-arena{box-shadow:inset 0 0 20px #000}
+#enemyBattleSprite,#allyBattleSprite{filter:drop-shadow(0 10px 0 rgba(0,0,0,.5))}
+.battle-log{color:#fff4d9;box-shadow:inset 2px 2px 5px rgba(0,0,0,.5)}
+.team-card{transition:outline .1s}.team-card.active{background:#1c1110}.team-card canvas{filter:drop-shadow(2px 2px 0 #000)}.team-card h3{color:#fff;text-shadow:1px 1px 0 #000}.help-panel p{margin:8px 0}
+.stick{transition:transform .05s linear}
