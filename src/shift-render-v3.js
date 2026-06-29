@@ -5,11 +5,12 @@ function drawPortraitV3(card, x, y, scale = 2, mirrored = false) {
   const uniform = ROLE_COLORS[role] || PALETTE.mid;
   const skin = card.id === "kp" ? "#b98358" : card.id === "manager" ? "#e0b786" : "#d9b274";
   const hair = card.id === "chef" ? PALETTE.paper : card.id === "host" ? "#3a281e" : card.id === "runner" ? "#2a241c" : "#593a25";
+  const spriteScale = scale * .75;
   const bob = scale > 1 ? Math.round(Math.sin((state.frame + card.id.length * 5) / 15)) : 0;
   const px = (xx, yy, ww, hh, colour) => {
-    const drawX = mirrored ? x + (22 - xx - ww) * scale : x + xx * scale;
+    const drawX = mirrored ? x + (24 - xx - ww) * spriteScale : x + xx * spriteScale;
     gameCtx.fillStyle = colour;
-    gameCtx.fillRect(drawX, y + (yy + bob) * scale, ww * scale, hh * scale);
+    gameCtx.fillRect(drawX, y + (yy + bob) * spriteScale, ww * spriteScale, hh * spriteScale);
   };
 
   px(6, 3, 10, 3, hair);
@@ -78,3 +79,14 @@ drawActiveCard = function drawActiveCardV3(card, x, y, w, h, enemy, guard) {
   drawPixelText(card.moves[0].name.slice(0, 9).toUpperCase(), textX, y + 40, 4, PALETTE.blue);
   if (guard > 0) drawPixelText(`G${guard}`, x + w - 11, y + h - 8, 5, PALETTE.blue, "center");
 };
+
+function openCollectionPolished() {
+  collectionList.innerHTML = Object.values(SHIFT_CARD_LIBRARY).map(card => {
+    const info = card.kind === "worker"
+      ? `${card.role} · ${card.composure} Composure · Card ${card.cost} SP<br>Blue: ${card.moves[0].name}, ${card.moves[0].damage} stress<br>Red: ${card.moves[1].name}, ${card.moves[1].damage} stress, 1 SP + 1 Tip`
+      : `${card.category} · ${card.cost} SP · ${card.text}`;
+    return `<article><strong>${card.name}</strong><br>${card.kind.toUpperCase()} · ${info}</article>`;
+  }).join("");
+  collectionModal.classList.remove("hidden");
+}
+collectionBtn.addEventListener("click", openCollectionPolished);
