@@ -5,6 +5,12 @@
     throw new Error("Firemon compatibility layer could not load.");
   }
 
+  const nativeAnimationFrame = window.requestAnimationFrame.bind(window);
+  window.requestAnimationFrame = callback => {
+    window.__firemonStarted = true;
+    return nativeAnimationFrame(callback);
+  };
+
   class FiremonDecompressionStream {
     constructor(format) {
       if (format !== "gzip") throw new TypeError("Only gzip is supported.");
