@@ -3,145 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <meta name="theme-color" content="#120b0b" />
+  <meta name="theme-color" content="#17231c" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Firemon</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <title>Shift Deck</title>
+  <link rel="stylesheet" href="shift-deck.css?v=3" />
 </head>
 <body>
-  <main id="app">
+  <main id="gameShell">
     <header class="topbar">
-      <div class="logo-wrap">
-        <span class="logo-mark">F</span>
-        <div>
-          <h1>FIREMON</h1>
-          <p>HUNT · DUEL · CAPTURE</p>
-        </div>
+      <div class="brand">
+        <h1>SHIFT DECK</h1>
+        <p>HOSPITALITY CARD BATTLE</p>
       </div>
-      <div class="top-actions">
-        <button id="helpBtn" class="pixel-btn small">?</button>
-        <button id="saveBtn" class="pixel-btn small">SAVE</button>
-      </div>
+      <div class="badge">GBC MODE</div>
     </header>
 
-    <section class="viewport-shell">
-      <canvas id="game" width="320" height="180" aria-label="Firemon game"></canvas>
-
-      <div class="hud top-left">
-        <div class="hud-box"><span>HP</span><strong id="hpText">100</strong></div>
-        <div class="hud-box"><span>AMMO</span><strong id="ammoText">30</strong></div>
-        <div class="hud-box"><span>CAPS</span><strong id="capsText">3</strong></div>
-      </div>
-
-      <div class="hud top-right">
-        <div class="target-box" id="targetBox">
-          <span id="targetName">NO TARGET</span>
-          <div class="bar"><i id="targetBar"></i></div>
-        </div>
-      </div>
-
-      <div id="crosshair" class="crosshair">+</div>
-      <div id="message" class="message"></div>
-
-      <section id="battleOverlay" class="overlay hidden">
-        <div class="battle-panel">
-          <div class="battle-title-row">
-            <div>
-              <p class="eyebrow">TURN-BASED DUEL</p>
-              <h2 id="battleTitle">WILD FIREMON</h2>
-            </div>
-            <button id="battleCloseBtn" class="pixel-btn small">X</button>
-          </div>
-
-          <div class="battle-arena">
-            <div class="battle-card enemy-card">
-              <div class="name-row"><strong id="enemyBattleName">Ashmaw</strong><span id="enemyBattleLevel">LV 2</span></div>
-              <div class="bar big"><i id="enemyBattleBar"></i></div>
-              <small id="enemyBattleHp">20 / 20</small>
-            </div>
-
-            <canvas id="enemyBattleSprite" width="96" height="96"></canvas>
-            <canvas id="allyBattleSprite" width="96" height="96"></canvas>
-
-            <div class="battle-card ally-card">
-              <div class="name-row"><strong id="allyBattleName">Cinderling</strong><span id="allyBattleLevel">LV 5</span></div>
-              <div class="bar big"><i id="allyBattleBar"></i></div>
-              <small id="allyBattleHp">30 / 30</small>
-            </div>
-          </div>
-
-          <div id="battleLog" class="battle-log">Choose your move.</div>
-          <div class="battle-actions">
-            <button id="attackBtn" class="pixel-btn">ATTACK</button>
-            <button id="skillBtn" class="pixel-btn amber">SKILL</button>
-            <button id="guardBtn" class="pixel-btn blue">GUARD</button>
-            <button id="captureBtn" class="pixel-btn green">CAPTURE</button>
-            <button id="fleeBtn" class="pixel-btn dark">FLEE</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="teamOverlay" class="overlay hidden">
-        <div class="menu-panel">
-          <div class="battle-title-row">
-            <div><p class="eyebrow">YOUR SQUAD</p><h2>FIREMON TEAM</h2></div>
-            <button id="teamCloseBtn" class="pixel-btn small">X</button>
-          </div>
-          <div id="teamList" class="team-list"></div>
-        </div>
-      </section>
-
-      <section id="helpOverlay" class="overlay hidden">
-        <div class="menu-panel help-panel">
-          <div class="battle-title-row">
-            <div><p class="eyebrow">FIELD MANUAL</p><h2>HOW TO PLAY</h2></div>
-            <button id="helpCloseBtn" class="pixel-btn small">X</button>
-          </div>
-          <p><b>MOVE:</b> Left thumb pad.</p>
-          <p><b>AIM:</b> Drag the right side of the screen.</p>
-          <p><b>FIRE:</b> Shoot wild Firemon to weaken them.</p>
-          <p><b>DUEL:</b> Enter turn-based battle when a target is nearby.</p>
-          <p><b>CAPTURE:</b> Best chance when the target is low on HP.</p>
-          <p><b>TEAM:</b> Swap your active Firemon.</p>
-          <p class="desktop-only">Keyboard: WASD move · arrows aim · Space fire · E duel · C capture · T team.</p>
-        </div>
-      </section>
+    <section class="screen-shell">
+      <canvas id="game" width="160" height="144" aria-label="Shift Deck game screen"></canvas>
+      <div id="toast"></div>
     </section>
 
-    <nav class="controls">
-      <div id="movePad" class="stick-pad"><div id="moveStick" class="stick"></div></div>
-      <div class="actions">
-        <button id="fireBtn" class="action-btn fire">FIRE</button>
-        <button id="duelBtn" class="action-btn duel">DUEL</button>
-        <button id="quickCaptureBtn" class="action-btn capture">CAP</button>
-        <button id="teamBtn" class="action-btn team">TEAM</button>
+    <section class="controls">
+      <div class="status-row">
+        <div id="playerStatus" class="status-box"><strong>CAREER</strong> · Wins 0</div>
+        <div id="rivalStatus" class="status-box"><strong>RECORD</strong> · Losses 0</div>
       </div>
-    </nav>
+
+      <div class="hand-wrap">
+        <div class="hand-title"><span>YOUR HAND</span><span>Tap a card, then play it</span></div>
+        <div id="hand"></div>
+      </div>
+
+      <div class="action-grid">
+        <button id="playBtn" class="game-btn gold" disabled>PLAY CARD</button>
+        <button id="moveOneBtn" class="game-btn blue" disabled>MOVE 1</button>
+        <button id="moveTwoBtn" class="game-btn red" disabled>MOVE 2</button>
+        <button id="endTurnBtn" class="game-btn dark" disabled>END TURN</button>
+      </div>
+    </section>
+
+    <footer class="footer-actions">
+      <button id="newShiftBtn" class="small-btn">START SHIFT</button>
+      <button id="collectionBtn" class="small-btn">CARD LIST</button>
+      <button id="helpBtn" class="small-btn">RULES</button>
+    </footer>
   </main>
+
+  <section id="helpModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>How to play</h2>
+      <p><strong>Workers</strong> are your active battlers. They use Composure instead of HP and take Stress instead of damage.</p>
+      <p><strong>Customers</strong> are one-use effect cards. They can heal staff, create chaos, drain Shift Points or pressure the rival venue.</p>
+      <p>At the start of each turn, your maximum Shift Points increase by one, up to five. Moves spend Shift Points.</p>
+      <p>You may roster one Worker and handle one Customer per turn. Your active Worker can then use one move, which ends your turn.</p>
+      <p>When a Worker reaches zero Composure, they are <strong>Sent on Break</strong>. The opponent gains one Tip. Collect three Tips to win the shift.</p>
+      <button class="game-btn gold" data-close-modal>BACK TO SHIFT</button>
+    </div>
+  </section>
+
+  <section id="collectionModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Current card list</h2>
+      <div id="collectionList" class="card-list"></div>
+      <button class="game-btn gold" data-close-modal>BACK</button>
+    </div>
+  </section>
 
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(registrations => {
-        registrations.forEach(registration => registration.unregister());
-      });
+      navigator.serviceWorker.getRegistrations().then(registrations => registrations.forEach(registration => registration.unregister()));
     }
     if ('caches' in window) {
       caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
     }
   </script>
-  <script src="src/game.js?v=5"></script>
-  <script>
-    setTimeout(() => {
-      if (!window.__firemonStarted) {
-        const message = document.getElementById('message');
-        if (message) {
-          message.textContent = 'STARTUP ERROR — CLOSE THE TAB AND REOPEN';
-          message.classList.add('show');
-        }
-      }
-    }, 3000);
-  </script>
+  <script src="src/shift-data.js?v=3"></script>
+  <script src="src/shift-engine.js?v=3"></script>
+  <script src="src/shift-render-a.js?v=3"></script>
+  <script src="src/shift-render-b.js?v=3"></script>
 </body>
 </html>
