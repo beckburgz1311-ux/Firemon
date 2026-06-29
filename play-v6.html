@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#120b0b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Firemon v6</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="v6-polish.css?v=6" />
+</head>
+<body>
+  <main id="app">
+    <header class="topbar">
+      <div class="logo-wrap"><span class="logo-mark">F</span><div><h1>FIREMON</h1><p>HUNT · DUEL · CAPTURE</p></div></div>
+      <div class="top-actions"><button id="helpBtn" class="pixel-btn small">?</button><button id="saveBtn" class="pixel-btn small">SAVE</button></div>
+    </header>
+
+    <section class="viewport-shell">
+      <canvas id="game" width="320" height="180" aria-label="Firemon game"></canvas>
+      <div class="scanlines"></div>
+      <div class="hud top-left"><div class="hud-box"><span>HP</span><strong id="hpText">100</strong></div><div class="hud-box"><span>AMMO</span><strong id="ammoText">30</strong></div><div class="hud-box"><span>CAPS</span><strong id="capsText">3</strong></div></div>
+      <div class="hud top-right"><div class="target-box" id="targetBox"><span id="targetName">NO TARGET</span><div class="bar"><i id="targetBar"></i></div></div></div>
+      <div id="crosshair" class="crosshair">+</div><div id="message" class="message"></div>
+
+      <section id="battleOverlay" class="overlay hidden">
+        <div class="battle-panel">
+          <div class="battle-title-row"><div><p class="eyebrow">TURN-BASED DUEL</p><h2 id="battleTitle">WILD FIREMON</h2></div><button id="battleCloseBtn" class="pixel-btn small">X</button></div>
+          <div class="battle-arena">
+            <div class="battle-card enemy-card"><div class="name-row"><strong id="enemyBattleName">Ashmaw</strong><span id="enemyBattleLevel">LV 2</span></div><div class="bar big"><i id="enemyBattleBar"></i></div><small id="enemyBattleHp">20 / 20</small></div>
+            <canvas id="enemyBattleSprite" width="96" height="96"></canvas><canvas id="allyBattleSprite" width="96" height="96"></canvas>
+            <div class="battle-card ally-card"><div class="name-row"><strong id="allyBattleName">Cinderling</strong><span id="allyBattleLevel">LV 5</span></div><div class="bar big"><i id="allyBattleBar"></i></div><small id="allyBattleHp">30 / 30</small></div>
+          </div>
+          <div id="battleLog" class="battle-log">Choose your move.</div>
+          <div class="battle-actions"><button id="attackBtn" class="pixel-btn">ATTACK</button><button id="skillBtn" class="pixel-btn amber">SKILL</button><button id="guardBtn" class="pixel-btn blue">GUARD</button><button id="captureBtn" class="pixel-btn green">CAPTURE</button><button id="fleeBtn" class="pixel-btn dark">FLEE</button></div>
+        </div>
+      </section>
+
+      <section id="teamOverlay" class="overlay hidden"><div class="menu-panel"><div class="battle-title-row"><div><p class="eyebrow">YOUR SQUAD</p><h2>FIREMON TEAM</h2></div><button id="teamCloseBtn" class="pixel-btn small">X</button></div><div id="teamList" class="team-list"></div></div></section>
+
+      <section id="helpOverlay" class="overlay hidden"><div class="menu-panel help-panel"><div class="battle-title-row"><div><p class="eyebrow">FIELD MANUAL</p><h2>HOW TO PLAY</h2></div><button id="helpCloseBtn" class="pixel-btn small">X</button></div><p><b>MOVE:</b> Left thumb pad.</p><p><b>AIM:</b> Drag the game view.</p><p><b>FIRE:</b> Shoot wild Firemon to weaken them.</p><p><b>DUEL:</b> Enter a turn-based battle.</p><p><b>CAPTURE:</b> Best below 40% HP.</p><p><b>REGEN:</b> HP and ammo recover slowly outside danger.</p><p><b>TEAM:</b> Swap your active Firemon.</p><p class="desktop-only">Keyboard: WASD move · arrows aim · Space fire · E duel · C capture · T team.</p></div></section>
+    </section>
+
+    <nav class="controls"><div id="movePad" class="stick-pad"><div id="moveStick" class="stick"></div></div><div class="actions"><button id="fireBtn" class="action-btn fire">FIRE</button><button id="duelBtn" class="action-btn duel">DUEL</button><button id="quickCaptureBtn" class="action-btn capture">CAP</button><button id="teamBtn" class="action-btn team">TEAM</button></div></nav>
+  </main>
+
+  <script src="src/v6-core.js?v=6"></script>
+  <script src="src/v6-engine.js?v=6"></script>
+  <script src="src/v6-combat.js?v=6"></script>
+  <script src="src/v6-boot.js?v=6"></script>
+</body>
+</html>
