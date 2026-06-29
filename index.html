@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Firemon</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <main id="app">
@@ -121,19 +121,27 @@
     </nav>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
-  <script src="src/gzip-polyfill.js?v=4"></script>
-  <script src="src/game.js?v=4"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        registrations.forEach(registration => registration.unregister());
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
+    }
+  </script>
+  <script src="src/game.js?v=5"></script>
   <script>
     setTimeout(() => {
       if (!window.__firemonStarted) {
-        const message = document.getElementById("message");
+        const message = document.getElementById('message');
         if (message) {
-          message.textContent = "LOADING FAILED — REFRESH ONCE";
-          message.classList.add("show");
+          message.textContent = 'STARTUP ERROR — CLOSE THE TAB AND REOPEN';
+          message.classList.add('show');
         }
       }
-    }, 3500);
+    }, 3000);
   </script>
 </body>
 </html>
