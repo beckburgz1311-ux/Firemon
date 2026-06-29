@@ -1,0 +1,30 @@
+html{scroll-behavior:smooth}
+body{background:radial-gradient(circle at top,#202a21,#0d110d 62%,#050705)}
+#gameShell{transition:filter .2s ease,transform .2s ease;background:linear-gradient(180deg,#1c261e,#0c100d)}
+.topbar,.status-box,.bench-wrap,.hand-wrap,.screen-shell{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.topbar{background:linear-gradient(180deg,#1b2b21,#121a15)}
+.badge{animation:badge-pulse 2.4s steps(2,end) infinite}
+@keyframes badge-pulse{50%{filter:brightness(1.15)}}
+.screen-shell{background:linear-gradient(145deg,#465447,#2c352e);border-color:#71806f}
+#game{border-color:#0c1510;box-shadow:inset 0 0 16px rgba(0,0,0,.55),0 0 0 2px #243128}
+.turn-meter{display:flex;justify-content:space-between;gap:8px;padding:7px 9px;background:linear-gradient(180deg,#23352a,#17221b);border:3px solid #526b48;box-shadow:3px 3px 0 #000;color:#b9c89c;font-size:9px;letter-spacing:.4px}
+.turn-meter b{color:var(--gold)}
+.bench-wrap,.hand-wrap{background:linear-gradient(180deg,#152019,#0e1511)}
+.bench-panel{gap:8px}
+.lineup-card{display:grid;grid-template-columns:38px 1fr;align-items:center;gap:7px;min-height:76px;padding:7px;background:linear-gradient(180deg,#e6edbb,#c8d59b);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.lineup-card:hover{filter:brightness(1.04)}
+.lineup-card strong{margin:0;font-size:9px}
+.lineup-card small{margin-top:3px}
+.lineup-card i{display:block;height:6px;margin-top:5px;background:#24352b;border:1px solid #14261e}
+.lineup-card i b{display:block;height:100%;background:linear-gradient(90deg,#4f844f,#90b45a)}
+.lineup-sprite{width:36px;height:36px;image-rendering:pixelated;background:#9eb273;border:2px solid #283b2d}
+.active-card{background:linear-gradient(180deg,#fff2a5,#d9c65f);box-shadow:0 0 0 2px #6d571c,3px 3px 0 #000}
+.bench-card{background:linear-gradient(180deg,#dbe7c8,#bacba5)}
+.bench-card:active{transform:translate(3px,3px) scale(.98)}
+.hand-card{overflow:hidden;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease,outline-color .16s ease}
+.hand-card:hover{transform:translateY(-2px)}
+.hand-card.selected{transform:translateY(-6px) scale(1.02);box-shadow:5px 7px 0 #000}
+.hand-sprite{display:block;width:36px;height:36px;margin:2px 0 5px;image-rendering:pixelated;background:#a8b87d;border:2px solid #304532}
+.customer-icon{display:grid;place-items:center;width:34px;height:34px;margin:3px 0 6px;border-radius:50%;background:linear-gradient(135deg,#f1e4a5,#9eb67a);border:3px solid #314b36;font-size:16px;font-weight:900}
+.hand-card .cost{border-radius:50%;background:linear-gradient(180deg,#355940,#1d3325);box-shadow:1px 1px 0 #000}
+@media(max-width:430px){.bench-panel{grid-template-columns:repeat(2,minmax(0,1fr))}.lineup-card{min-height:72px}.turn-meter{font-size:8px}}
