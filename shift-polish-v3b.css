@@ -1,0 +1,22 @@
+.action-grid{grid-template-columns:1.05fr 1.25fr 1.25fr .9fr}
+.game-btn{position:relative;overflow:hidden;transition:transform .12s ease,box-shadow .12s ease,filter .12s ease;background:linear-gradient(180deg,#7f9d5b,#5d7b43)}
+.game-btn:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 45%);pointer-events:none}
+.game-btn span,.game-btn small{position:relative;z-index:1;display:block}
+.game-btn small{margin-top:4px;font-size:7px;line-height:1.25;font-weight:700}
+.game-btn.blue{background:linear-gradient(180deg,#91bdd0,#668ca0)}
+.game-btn.red{background:linear-gradient(180deg,#dd8178,#a94c48)}
+.game-btn.gold{background:linear-gradient(180deg,#f1cf67,#c69731)}
+.game-btn.dark{background:linear-gradient(180deg,#5f7a64,#3e5746)}
+.game-btn:not(:disabled):active{transform:translate(3px,3px) scale(.98)}
+.game-btn:disabled{filter:grayscale(.75) brightness(.55);opacity:.58}
+.attack-name{font-size:10px;line-height:1.1}
+.footer-actions{gap:10px}
+.small-btn{background:linear-gradient(180deg,#263a2d,#17241c);transition:transform .12s ease,filter .12s ease}
+.small-btn:active{transform:translate(2px,2px)}
+.modal-card{background:linear-gradient(180deg,#203127,#121c16);border-color:#75906a;animation:modal-in .18s ease-out}
+@keyframes modal-in{from{transform:translateY(10px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.card-list article{background:linear-gradient(180deg,#2b4133,#203127)}
+.screen-shell.attack-shake{animation:shift-attack-shake-v3 .34s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shift-attack-shake-v3{10%,90%{transform:translate3d(-3px,0,0)}20%,80%{transform:translate3d(4px,-1px,0)}30%,50%,70%{transform:translate3d(-6px,2px,0)}40%,60%{transform:translate3d(6px,-2px,0)}}
+@media(max-width:430px){.action-grid{grid-template-columns:1fr 1fr}.game-btn{min-height:60px}.game-btn small{font-size:7px}}
+@media(orientation:landscape) and (max-height:600px){.lineup-card{min-height:60px}.action-grid{grid-template-columns:repeat(4,1fr)}.game-btn{min-height:54px}}
