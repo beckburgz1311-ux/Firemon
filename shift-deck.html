@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#17231c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Shift Deck</title>
+  <link rel="stylesheet" href="shift-deck.css?v=1" />
+</head>
+<body>
+  <main id="gameShell">
+    <header class="topbar">
+      <div class="brand">
+        <h1>SHIFT DECK</h1>
+        <p>HOSPITALITY CARD BATTLE</p>
+      </div>
+      <div class="badge">GBC MODE</div>
+    </header>
+
+    <section class="screen-shell">
+      <canvas id="game" width="160" height="144" aria-label="Shift Deck game screen"></canvas>
+      <div id="toast"></div>
+    </section>
+
+    <section class="controls">
+      <div class="status-row">
+        <div id="playerStatus" class="status-box"><strong>CAREER</strong> · Wins 0</div>
+        <div id="rivalStatus" class="status-box"><strong>RECORD</strong> · Losses 0</div>
+      </div>
+
+      <div class="hand-wrap">
+        <div class="hand-title"><span>YOUR HAND</span><span>Tap a card, then play it</span></div>
+        <div id="hand"></div>
+      </div>
+
+      <div class="action-grid">
+        <button id="playBtn" class="game-btn gold" disabled>PLAY CARD</button>
+        <button id="moveOneBtn" class="game-btn blue" disabled>MOVE 1</button>
+        <button id="moveTwoBtn" class="game-btn red" disabled>MOVE 2</button>
+        <button id="endTurnBtn" class="game-btn dark" disabled>END TURN</button>
+      </div>
+    </section>
+
+    <footer class="footer-actions">
+      <button id="newShiftBtn" class="small-btn">START SHIFT</button>
+      <button id="collectionBtn" class="small-btn">CARD LIST</button>
+      <button id="helpBtn" class="small-btn">RULES</button>
+    </footer>
+  </main>
+
+  <section id="helpModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>How to play</h2>
+      <p><strong>Workers</strong> are your active battlers. They use Composure instead of HP and take Stress instead of damage.</p>
+      <p><strong>Customers</strong> are one-use effect cards. They can heal staff, create chaos, drain Shift Points or pressure the rival venue.</p>
+      <p>At the start of each turn, your maximum Shift Points increase by one, up to five. Moves spend Shift Points.</p>
+      <p>You may roster one Worker and handle one Customer per turn. Your active Worker can then use one move, which ends your turn.</p>
+      <p>When a Worker reaches zero Composure, they are <strong>Sent on Break</strong>. The opponent gains one Tip. Collect three Tips to win the shift.</p>
+      <button class="game-btn gold" data-close-modal>BACK TO SHIFT</button>
+    </div>
+  </section>
+
+  <section id="collectionModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Current card list</h2>
+      <div id="collectionList" class="card-list"></div>
+      <button class="game-btn gold" data-close-modal>BACK</button>
+    </div>
+  </section>
+
+  <script src="src/shift-data.js?v=1"></script>
+  <script src="src/shift-engine.js?v=1"></script>
+  <script src="src/shift-render-a.js?v=1"></script>
+  <script src="src/shift-render-b.js?v=1"></script>
+</body>
+</html>
