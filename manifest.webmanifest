@@ -1,0 +1,11 @@
+{
+  "name": "Firemon",
+  "short_name": "Firemon",
+  "description": "A pixel first-person monster hunting and battle game.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090606",
+  "theme_color": "#120b0b",
+  "orientation": "any",
+  "icons": []
+}
